@@ -64,7 +64,7 @@ export function PaymentPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:9000/api/v1/payment",
+        "http://54.252.215.51:9000/api/v1/payment",
         {
           method: "POST",
           headers: {
