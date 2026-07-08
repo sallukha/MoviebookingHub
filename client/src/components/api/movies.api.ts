@@ -1,6 +1,6 @@
 import axios from "axios";
 const api = axios.create({
-  baseURL: "http://54.252.215.51:9000/api/v1",
+  baseURL: " /api/v1/movies",
 });
 export const getMovies = async () => {
   const res = await api.get("/movies");

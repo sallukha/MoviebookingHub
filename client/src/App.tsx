@@ -12,6 +12,9 @@ import { PaymentPage } from "./components/PaymentPage";
 import { UserDashboard } from "./components/UserDashboard";
 import { AdminPanel } from "./components/AdminPanel";
 
+// Workaround for TSX prop typing issues with imported components
+const AnyPayment: any = PaymentPage;
+
 export default function App() {
   const [user, setUser] = useState<any>(null);
   const [selectedMovie, setSelectedMovie] = useState<any>(null);
@@ -48,7 +51,7 @@ export default function App() {
 
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<LandingPage onNavigateToLogin={undefined} onNavigateToSignup={undefined} />} />
+          <Route path="/" element={<LandingPage onNavigateToLogin={() => {}} onNavigateToSignup={() => {}} />} />
 
           <Route
             path="/login"
@@ -68,7 +71,7 @@ export default function App() {
                 <HomePage
                   user={user}
                   onLogout={handleLogout}
-                  onMovieSelect={(movie) => setSelectedMovie(movie)}
+                  onMovieSelect={(movie: any) => setSelectedMovie(movie)}
                   onNavigate={() => {}}
                   notifications={notifications}
                 />
@@ -105,7 +108,7 @@ export default function App() {
                   movie={selectedMovie}
                   user={user}
                   onBack={() => {}}
-                  onProceedToPayment={(data) => setBookingData(data)}
+                  onProceedToPayment={(data: any) => setBookingData(data)}
                   onNavigate={() => {}}
                   onLogout={handleLogout}
                   notifications={notifications}
@@ -120,7 +123,7 @@ export default function App() {
             path="/payment"
             element={
               bookingData ? (
-                <PaymentPage
+                <AnyPayment
                   bookingData={bookingData}
                   user={user}
                   onBack={() => {}}
